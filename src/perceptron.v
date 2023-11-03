@@ -37,9 +37,6 @@ module perceptron (
             // Output the current bit and update the output
             bit_out <= current[bit_counter];
 
-            // set the overflow check bit to 0
-            overflow = 0;
-
             if (bit_out == 1) begin
                 sum += weights[bit_counter];
 
