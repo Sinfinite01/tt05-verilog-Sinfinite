@@ -18,6 +18,9 @@ module tt_um_perceptron #() (
     // assign the bidirectionals that we are using to 0
     assign uio_out = 8'b00000000;
 
+    // assign the bidirectionals that we aren't using to 0
+    assign uio_in = 8'b00000000;
+
     // assigning the uo out unused bits to something
     assign uo_out[6:0] = 7'b0000000;
 

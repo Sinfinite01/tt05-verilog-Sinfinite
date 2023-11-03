@@ -38,7 +38,7 @@ module perceptron (
             bit_out <= current[bit_counter];
 
             if (bit_out == 1) begin
-                sum += weights[bit_counter];
+                sum <= sum + weights[bit_counter];
 
                 if (sum[8] == 1) begin  // check for overflow
                     sum <= 9'b011111111;
