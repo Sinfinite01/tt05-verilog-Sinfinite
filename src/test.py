@@ -34,7 +34,7 @@ async def test_my_design1(dut):  #dut = device under test
 @cocotb.test()
 async def test_my_design2(dut):  #dut = device under test
 
-    CONSTANT_INPUT = my_variable = 0b00000000 # we can do up to 2^8-1 which is 255
+    CONSTANT_INPUT = my_variable = 0b00000001 # we can do up to 2^8-1 which is 255
 
     dut._log.info("starting simulation...")
 
