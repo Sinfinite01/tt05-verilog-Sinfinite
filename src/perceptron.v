@@ -4,19 +4,19 @@ module perceptron (
     input wire [7:0] current,
     input wire       clk,
     input wire       rst_n,
-    output reg [1:0] classification,
+    output reg classification
 );
 
     // reg [7:0] next_state, threshold;
     reg [7:0] bias, sum;
-    reg reg [7:0] weights [0:6];  // Declare an array of 7 registers, each with 8 bits
+    reg [7:0] weights [0:6];  // Declare an array of 7 registers, each with 8 bits
     reg [2:0] bit_counter;
-    reg [0] bit_out;
+    reg [0:0] bit_out;
 
     always @(posedge clk) begin
-        if (rst_n) begin
+        if (!rst_n) begin
             // Reset the counter and output bit
-            bit_counter <= 3'b0;
+            bit_counter <= 3'b000;
             bit_out <= 1'b0;
             sum = 8'b00000000;
             bias = 8'b00000000;
@@ -38,11 +38,11 @@ module perceptron (
             if (bit_out == 1) begin
                 sum += weights[bit_counter];
             end else begin
-                sum += 0    // The bit out is zero so 0*weight = 0 so the sum doesn't change/gets 0 added to it
+                sum += 0;    // The bit out is zero so 0*weight = 0 so the sum doesn't change/gets 0 added to it
             end
 
             if (bit_counter == 7) begin
-                if (sum + bias >= 0) begin
+                if (sum + bias >= 8'b1000000) begin
                     classification <= 1;
                 end else begin 
                     classification <= 0;

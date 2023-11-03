@@ -3,46 +3,54 @@ from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 
 
-segments = [ 63, 6, 91, 79, 102, 109, 124, 7, 127, 103 ]
+# @cocotb.test()
+# async def test_my_design(dut):
+#     dut._log.info("start")
 
 @cocotb.test()
-async def test_7seg(dut):
-    dut._log.info("start")
-    clock = Clock(dut.clk, 10, units="us")
+async def test_my_design1(dut):  #dut = device under test
+
+    CONSTANT_INPUT = my_variable = 0b10101010 # we can do up to 2^8-1 which is 255
+
+    dut._log.info("starting simulation...")
+
+    # initializing clock
+    clock = Clock(dut.clk, 1, units="ns")
     cocotb.start_soon(clock.start())
 
-    # reset
-    dut._log.info("reset")
-    dut.rst_n.value = 0
-    # set the compare value
-    dut.ui_in.value = 1
+    dut.rst_n.value = 0 # active low reset
+
     await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 1
+    dut.rst_n.value = 1 # take out of reset
 
-    # the compare value is shifted 10 bits inside the design to allow slower counting
-    max_count = dut.ui_in.value << 10
-    dut._log.info(f"check all segments with MAX_COUNT set to {max_count}")
-    # check all segments and roll over
-    for i in range(15):
-        dut._log.info("check segment {}".format(i))
-        await ClockCycles(dut.clk, max_count)
-        assert int(dut.segments.value) == segments[i % 10]
+    dut.ui_in.value = CONSTANT_INPUT
+    dut.ena.value = 1 # enable design
 
-        # all bidirectionals are set to output
-        assert dut.uio_oe == 0xFF
+    for _ in range(100):
+        await RisingEdge(dut.clk)
 
-    # reset
-    dut.rst_n.value = 0
-    # set a different compare value
-    dut.ui_in.value = 3
+    dut._log.info("done?") 
+
+@cocotb.test()
+async def test_my_design2(dut):  #dut = device under test
+
+    CONSTANT_INPUT = my_variable = 0b00000000 # we can do up to 2^8-1 which is 255
+
+    dut._log.info("starting simulation...")
+
+    # initializing clock
+    clock = Clock(dut.clk, 1, units="ns")
+    cocotb.start_soon(clock.start())
+
+    dut.rst_n.value = 0 # active low reset
+
     await ClockCycles(dut.clk, 10)
-    dut.rst_n.value = 1
+    dut.rst_n.value = 1 # take out of reset
 
-    max_count = dut.ui_in.value << 10
-    dut._log.info(f"check all segments with MAX_COUNT set to {max_count}")
-    # check all segments and roll over
-    for i in range(15):
-        dut._log.info("check segment {}".format(i))
-        await ClockCycles(dut.clk, max_count)
-        assert int(dut.segments.value) == segments[i % 10]
+    dut.ui_in.value = CONSTANT_INPUT
+    dut.ena.value = 1 # enable design
 
+    for _ in range(100):
+        await RisingEdge(dut.clk)
+
+    dut._log.info("done?")
