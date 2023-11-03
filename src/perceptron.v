@@ -12,7 +12,7 @@ module perceptron (
     reg [8:0] sum;
     reg [7:0] weights [0:6];  // Declare an array of 7 registers, each with 8 bits
     reg [2:0] bit_counter;
-    reg [0:0] bit_out, overflow;
+    reg [0:0] bit_out;
 
     always @(posedge clk) begin
         if (!rst_n) begin
@@ -43,7 +43,7 @@ module perceptron (
             if (bit_out == 1) begin
                 sum += weights[bit_counter];
 
-                if (sum[8] == 1) begin
+                if (sum[8] == 1) begin  // check for overflow
                     sum <= 9'b011111111;
                 end
 
