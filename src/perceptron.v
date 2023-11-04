@@ -55,7 +55,7 @@ module perceptron (
                             bit_out <= inputs1[bit_counter[3:0]];
                         end    
                         else if (bit_counter < 15) begin
-                            bit_out <= inputs2[(bit_counter - 8)[3:0]];
+                            bit_out <= inputs2[bit_counter - 8];
                         end 
                         bit_check <= 1;
                     end 
