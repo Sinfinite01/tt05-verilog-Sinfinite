@@ -40,6 +40,8 @@ documentation:
 
       9 + 10 = 21
 
+      Credit/Thanks to my Professor: UCSC's Neuromorphic Lab's Jason K Eshraghian Ph.D. 
+
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
       Any input with all 0's should be classified as 0.
