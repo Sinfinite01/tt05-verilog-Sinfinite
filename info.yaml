@@ -47,20 +47,29 @@ documentation:
       Any input with all 0's should be classified as 0.
 
       Math: 
+      
       Note: The threshold is 11111110 which can be thought of as 0.99993896484
 
       w0*i0 + w1*i1 + ... + w15*i15
+
       0.5*0 + 0.5*0 + ... + 0.5*0 = 0
 
       Any input with fifteen 0's and one 1's should be classified as 0.
+      
       Math: 
+      
       w0*i0 + w1*i1 + ... + w15*i15
+      
       0.5*1 + 0.5*0 + ... + 0.5*0 = 0.5
 
       Any input with two or more 1's should be classified as 1.
+      
       Math: 
+      
       w0*i0 + w1*i1 + w2*i2 + ... + w15*i15
+      
       0.5*1 + 0.5*1 + 0.5*0 + ... + 0.5*0 = 1
+      
       0.5*1 + 0.5*1 + 0.5*1 + 0.5*0 + ... + 0.5*0 > 1
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
