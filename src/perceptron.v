@@ -52,7 +52,7 @@ module perceptron (
                     if (bit_check == 0) begin
                         // Output the current bit and update the output
                         if (bit_counter < 8) begin
-                            bit_out <= inputs1[bit_counter[3:0]];
+                            bit_out <= inputs1[bit_counter[2:0]];
                         end    
                         else if (bit_counter < 15) begin
                             bit_out <= inputs2[bit_counter - 8];
@@ -61,7 +61,7 @@ module perceptron (
                     end 
                     else begin
                         if (bit_out == 1) begin
-                            sum <= sum + weights[bit_counter[4:0]];
+                            sum <= sum + weights[bit_counter[3:0]];
                             sum_check <= 1;
                         end
                         else begin
