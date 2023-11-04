@@ -22,7 +22,7 @@ module tt_um_perceptron  (
     // assign uio_in = 8'b00000000;
 
     // assigning the uo out unused bits to something
-    assign uo_out[7:1] = 7'b0000000;
+    assign uio_out[7:1] = 7'b0000000;
 
     // instantiate perceptron
     perceptron perceptron(.inputs1(ui_in), .inputs2(uio_in), .clk(clk), .rst_n(rst_n), .classification(uo_out[0]));
