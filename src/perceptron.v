@@ -63,13 +63,15 @@ module perceptron (
                     else begin
                         if (bit_out == 1) begin
                             sum <= sum + weights[bit_counter];
+                            sum_check <= 1;
                         end
-                        old_sum = sum;
+                        else begin
+                            bit_counter <= bit_counter + 1'b1;
+                        end
                         bit_check <= 0;
-                        sum_check <= 1;
-                        bit_counter <= bit_counter + 1'b1;
                     end
                 end else begin
+                    old_sum = sum;
                     if (overflow_check == 0) begin
                         overflow <= (sum > 9'b011111111);
                         overflow_check <= 1;
@@ -77,27 +79,30 @@ module perceptron (
                     else begin
                         if (overflow == 1) begin  // check for overflow
                             overflow_reset <= 1;
+                            overflow <= 0;
                         end
                         else begin
                             if (overflow_reset == 0) begin
                                 sum_check <= 0;
                                 overflow_check <=0;
                                 overflow_reset <= 0;
+                                bit_counter <= bit_counter + 1'b1;
                             end
                             else begin
                                 old_sum <= 9'b011111111;
                                 sum_check <= 0;
                                 overflow_check <=0;
                                 overflow_reset <= 0;
+                                bit_counter <= bit_counter + 1'b1;
                             end 
-                        end
+                        end             
                     end
                 end
 
             end
 
             if (bit_counter == 16) begin
-
+                sum = old_sum;
                 trimmed_sum = sum[7:0];
                 if (trimmed_sum + bias > 8'b11111110) begin
                     classification <= 1;
