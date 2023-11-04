@@ -14,7 +14,7 @@ module perceptron (
     reg [8:0] old_sum;
     reg [7:0] trimmed_sum;
     reg [7:0] weights [0:15];  // Declare an array of 14 registers, each with 8 bits
-    reg [5:0] bit_counter;
+    reg [4:0] bit_counter;
     reg [0:0] bit_out;
     reg [8:0] time_step;
     reg sum_check;
