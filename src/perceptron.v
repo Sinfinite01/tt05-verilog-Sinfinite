@@ -25,7 +25,7 @@ module perceptron (
     always @(posedge clk) begin
         if (!rst_n) begin
             // Reset the counter and output bit
-            bit_counter <= 5'b00000;
+            bit_counter <= 5'b0000;
             bit_out <= 1'b0;
             sum <= 9'b000000000;
             old_sum <= 9'b000000000;
@@ -52,16 +52,16 @@ module perceptron (
                     if (bit_check == 0) begin
                         // Output the current bit and update the output
                         if (bit_counter < 8) begin
-                            bit_out <= inputs1[bit_counter];
+                            bit_out <= inputs1[bit_counter[3:0]];
                         end    
                         else if (bit_counter < 15) begin
-                            bit_out <= inputs2[bit_counter - 8];
+                            bit_out <= inputs2[(bit_counter - 8)[3:0]];
                         end 
                         bit_check <= 1;
                     end 
                     else begin
                         if (bit_out == 1) begin
-                            sum <= sum + weights[bit_counter];
+                            sum <= sum + weights[bit_counter[4:0]];
                             sum_check <= 1;
                         end
                         else begin
