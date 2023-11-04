@@ -48,7 +48,7 @@ module perceptron (
 
                 if (sum_check == 0) begin
                     overflow <= 0;
-                    sum = old_sum;
+                    sum <= old_sum;
                     if (bit_check == 0) begin
                         // Output the current bit and update the output
                         if (bit_counter < 8) begin
@@ -70,7 +70,7 @@ module perceptron (
                         bit_check <= 0;
                     end
                 end else begin
-                    old_sum = sum;
+                    old_sum <= sum;
                     if (overflow_check == 0) begin
                         overflow <= (sum > 9'b011111111);
                         overflow_check <= 1;
@@ -101,8 +101,8 @@ module perceptron (
             end
 
             if (bit_counter == 16) begin
-                sum = old_sum;
-                trimmed_sum = sum[7:0];
+                sum <= old_sum;
+                trimmed_sum <= sum[7:0];
                 if (trimmed_sum + bias > 8'b11111110) begin
                     classification <= 1;
                 end else begin 
