@@ -94,4 +94,8 @@ documentation:
 
 # The following fields are optional
   tag:          "perceptron, test, calculator"      # comma separated list of tags: test, encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
+  external_hw:  ""
   discord:      ".sinfinite"      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
+  doc_link:     ""
+  clock_hz:     ""
+  picture:      ""        # relative path to picture in nrepository
