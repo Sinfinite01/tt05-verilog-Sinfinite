@@ -39,9 +39,23 @@ module perceptron (
             overflow_check <= 0;
 
             // Initialize the weights
-            for (int i = 0; i < 16; i = i + 1) begin    // The representation here is with the decimal at the from .000000000 
-                weights[i] <= 8'b10000000;              // so b1000000 represents 0.5 in decimal
-            end
+            // for (int i = 0; i < 16; i = i + 1) begin    // The representation here is with the decimal at the from .000000000 
+            //     weights[i] <= 8'b10000000;              // so b1000000 represents 0.5 in decimal
+            // end
+            weights[0] <= 8'b10000000;
+            weights[1] <= 8'b10000000;
+            weights[2] <= 8'b10000000;
+            weights[3] <= 8'b10000000;
+            weights[4] <= 8'b10000000;
+            weights[6] <= 8'b10000000;
+            weights[7] <= 8'b10000000;
+            weights[9] <= 8'b10000000;
+            weights[10] <= 8'b10000000;
+            weights[11] <= 8'b10000000;
+            weights[12] <= 8'b10000000;
+            weights[13] <= 8'b10000000;
+            weights[14] <= 8'b10000000;
+            weights[15] <= 8'b10000000;
         end 
         else begin
             if ( (inputs1==9 & inputs2==10) | (inputs1==10 & inputs2==9) ) begin
@@ -57,7 +71,7 @@ module perceptron (
                             if (bit_counter < 8) begin
                                 bit_out <= inputs1[bit_counter[2:0]];
                             end    
-                            else if (bit_counter < 15) begin
+                            else if (bit_counter < 15) begin 
                                 bit_out <= inputs2[bit_counter - 8];
                             end 
                             bit_check <= 1;
