@@ -49,6 +49,7 @@ module perceptron (
             weights[4] <= 8'b10000000;
             weights[6] <= 8'b10000000;
             weights[7] <= 8'b10000000;
+            weights[8] <= 8'b10000000;
             weights[9] <= 8'b10000000;
             weights[10] <= 8'b10000000;
             weights[11] <= 8'b10000000;
